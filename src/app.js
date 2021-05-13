@@ -4,7 +4,7 @@ const path = require("path");
 const morgan = require('express');
 
 // Settings
-app.set("port",process.env.PORT || 5000);
+app.set("port",process.env.PORT || 5001);
 
 
 // Middlewares
@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: false}));
 
 //Routes
 app.use(require("./routes/index"));
-app.use(require('./routes/notasRoutes'));
+// app.use(require('./routes/notasRoutes'));
 app.use(require('./routes/contactosRoutes'));
 //app.use(require('./routes/usersRoutes'));
 
