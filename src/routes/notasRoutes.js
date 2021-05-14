@@ -1,23 +1,20 @@
 const{ Router} =require("express");
 const router = Router();
+const notaCtrl = require('../controllers/notas.controller');
 
 //Busco todas las notas
-router.get('/api/notas', (req,res)=>{
-    res.send("NOTAS GET");
-});
-//Busco Nota por Id
-router.get('/api/notas/:notaId', (req,res)=>{
-    res.send("NOTAS GET ID");
-});
+router.get('/api/notas', notaCtrl.getNotas);
 
-router.post('/api/notas', (req,res)=>{
-    res.send("NOTAS POST");
-});
-router.put('/api/notas/:notaId', (req,res)=>{
-    res.send("NOTAS PUT");
-});
-router.delete('/api/notas/:notaId', (req,res)=>{
-    res.send("NOTAS DELETE");
-});
+//Busco Nota por Id
+router.get('/api/notas/:notaId',notaCtrl.getNotaById);
+
+//Creo nota
+router.post('/api/notas',notaCtrl.createNota);
+
+// Actualizo nota por Id
+router.put('/api/notas/:notaId', notaCtrl.updateNotaById);
+
+// Elimino nota por Id
+router.delete('/api/notas/:notaId',notaCtrl.deleteNotaById);
 
 module.exports = router;

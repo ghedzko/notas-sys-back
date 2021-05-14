@@ -1,7 +1,7 @@
 const{ Router} =require("express");
 const router = Router();
 const contactoCtrl = require("../controllers/contactos.controller");
-//console.log(contactoCtrl);
+
 //Busco todas los contactos
 router.get( '/api/contactos', contactoCtrl.getContactos );
 //Busco contacto por Id

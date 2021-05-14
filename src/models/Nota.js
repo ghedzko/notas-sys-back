@@ -15,9 +15,6 @@ const notaSchema = new Schema(
         fecha: Date,
         etiqueta:[String]
     }
-    {
-        timestamps: true,
-        versionKey: false,
-      }
+
 );
-module.exports model("Nota", notaSchema);
+module.exports= model("Nota", notaSchema);
