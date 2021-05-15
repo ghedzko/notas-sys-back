@@ -17,7 +17,9 @@ app.use(express.json());
 app.use(require("./routes/index"));
 app.use(require('./routes/notasRoutes'));
 app.use(require('./routes/contactosRoutes'));
-//app.use(require('./routes/usersRoutes'));
+app.use(require('./routes/usersRoutes'));
+app.use(require('./routes/rolesRoutes'));
+
 
 
 //404 handler

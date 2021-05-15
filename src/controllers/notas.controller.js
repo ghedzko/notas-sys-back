@@ -31,6 +31,7 @@ async function getNotaById(req,res){
 async function getNotas(req,res){
     try{
         const notas = await Nota.find({});
+        console.log(notas)
         return res.json(notas);
     }
     catch(error){
