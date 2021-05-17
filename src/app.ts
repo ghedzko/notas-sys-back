@@ -9,6 +9,11 @@ import rolesRoutes from "./routes/rolesRoutes";
 import contactosRoutes from "./routes/contactosRoutes";
 import usersRoutes from "./routes/usersRoutes";
 
+// Swagger
+import swaggerUI from "swagger-ui-express";
+import swaggerJsDoc from "swagger-jsdoc";
+import { options } from "./swaggerOptions";
+
 // Settings
 app.set("port",process.env.PORT || 5001);
 
@@ -18,8 +23,9 @@ app.use(morgan());
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-
+const specs = swaggerJsDoc(options);
 //Routes
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/", indexRoutes);
 app.use("/api/contactos", contactosRoutes);
 app.use('/api/notas', notasRoutes);
