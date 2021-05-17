@@ -1,7 +1,7 @@
-require('dotenv').config();
-require('./database');
+require('dotenv').config()
+require('./database')
 
-const app = require("../src/app");
+import app from "./app";
 async function main(){
     await app.listen(app.get("port"));
     console.log("Servidor en puerto ",app.get("port"))

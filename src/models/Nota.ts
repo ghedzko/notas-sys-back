@@ -13,7 +13,13 @@ const notaSchema = new Schema(
         },
         descripcion: String,
         fecha: Date,
+        esDeEntrada: Boolean,
+        file:[String],
         etiqueta:[String]
+    },
+    {
+      timestamps: true,
+      versionKey: false,
     }
 
 );

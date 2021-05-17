@@ -1,6 +1,6 @@
-const db = require('mongoose');
+import mongoose from "mongoose";
 
-db
+mongoose
     .connect(process.env.MONGODB_URI,{
         useNewUrlParser: true,
         useUnifiedTopology: true,
