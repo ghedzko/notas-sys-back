@@ -1,9 +1,9 @@
 const{ Router} =require("express");
 const router = Router();
 const userCtrl = require('../controllers/user.controller');
-
+const {verifyToken} = require('../middlewares/authJwt');
 //Busco todos los usuarios
-router.get('/api/users', userCtrl.getUsers);
+router.get('/api/users',[verifyToken], userCtrl.getUsers);
 
 //Busco Usuario por Id
 router.get('/api/users/:userId',userCtrl.getUserById);

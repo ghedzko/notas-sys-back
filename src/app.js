@@ -19,7 +19,7 @@ app.use(require('./routes/notasRoutes'));
 app.use(require('./routes/contactosRoutes'));
 app.use(require('./routes/usersRoutes'));
 app.use(require('./routes/rolesRoutes'));
-
+app.use(require("./routes/authRoutes"));
 
 
 //404 handler
