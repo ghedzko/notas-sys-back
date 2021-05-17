@@ -17,4 +17,4 @@ router.put('/api/notas/:notaId', notaCtrl.updateNotaById);
 // Elimino nota por Id
 router.delete('/api/notas/:notaId',notaCtrl.deleteNotaById);
 
-module.exports = router;
+export default router;

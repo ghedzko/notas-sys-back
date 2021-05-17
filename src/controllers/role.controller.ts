@@ -1,6 +1,7 @@
-const Role =require("../models/Role");
+import { Handler } from "express";
+const Role = require("../models/Role");
 
-async function createRole(req, res) {
+export const createRole: Handler = async(req, res) =>{
   try {
     const { name } = req.body;
 
@@ -17,13 +18,13 @@ async function createRole(req, res) {
     console.error(error);
   }
 };
-async function getRoleById(req,res){
+export const getRoleById: Handler = async(req,res) =>{
   const{roleId} = req.params;
   const role = await Role.findById(roleId);
   res.status(200).json(role);
 };
 
-async function getRoles(req, res) {
+export const getRoles: Handler = async(req, res) =>{
   try{
     const roles = await Role.find({});
     // console.log(roles);
@@ -33,7 +34,7 @@ async function getRoles(req, res) {
     console.log(error)
   }
 };
-async function updateRoleById(req,res){
+export const updateRoleById: Handler = async(req,res) =>{
   const updatedRole = await Role.findByIdAndUpdate(
     req.params.roleId,
     req.body,
@@ -43,15 +44,15 @@ async function updateRoleById(req,res){
   );
   res.status(204).json(updatedRole);
 };
-async function deleteRoleById(req,res){
+export const deleteRoleById: Handler = async(req,res) =>{
   const { roleId} = req.params;
   const deletedRole = await Role.findByIdAndDelete(roleId);
   res.status(204).json(deletedRole);
 };
-module.exports = {
-  createRole:createRole,
-  getRoleById:getRoleById,
-  getRoles:getRoles,
-  updateRoleById:updateRoleById,
-  deleteRoleById:deleteRoleById
-}
+// module.exports = {
+//   createRole:createRole,
+//   getRoleById:getRoleById,
+//   getRoles:getRoles,
+//   updateRoleById:updateRoleById,
+//   deleteRoleById:deleteRoleById
+// }

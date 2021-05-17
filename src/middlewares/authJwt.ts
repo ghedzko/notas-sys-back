@@ -1,16 +1,17 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
+import { Handler } from "express";
 
 // import User from "../models/User";
 // import Role from "../models/Role";
 
-const verifyToken = async (req, res, next) => {
+export const verifyToken: Handler = async (req, res, next) => {
   let token = req.headers["authorization"];
 
   if (!token) return res.status(403).json({ message: "No token provided" });
 
   try {
     const decoded = jwt.verify(token, process.env.SECRET);
-    req.userId = decoded.id;
+    // req.userId = decoded.id;
 
     // const user = await User.findById(req.userId, { password: 0 });
     // if (!user) return res.status(404).json({ message: "No user found" });
@@ -58,8 +59,8 @@ const verifyToken = async (req, res, next) => {
 //     return res.status(500).send({ message: error });
 //   }
 // };
-module.exports = {
-  verifyToken
+// module.exports = {
+//   verifyToken
   // isAdmin,
   // isModerator
-}
+// }

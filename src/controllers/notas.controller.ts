@@ -1,15 +1,16 @@
+import { Handler } from "express";
 const Nota = require('../models/Nota');
 
-async function createNota(req,res){
-    const {numero, remitente, destinatario, descripcion, fecha, etiqueta} = req.body;
+export const createNota: Handler = async(req,res) =>{
+    const {number, sender, addressee, description, send_date , tag} = req.body;
     try{
         const newNota = new Nota({
-            numero,
-            remitente,
-            destinatario,
-            descripcion,
-            fecha,
-            etiqueta  
+            number,
+            sender,
+            addressee,
+            description,
+            send_date,
+            tag  
         });
         console.log(newNota);
         const notaSaved = await newNota.save();
@@ -17,18 +18,17 @@ async function createNota(req,res){
 
     } catch(err){
         console.log(err);
-        return res.status(500).json(error);
+        return res.status(500).json(err);
     }
 };
-
-async function getNotaById(req,res){
+export const  getNotaById: Handler = async(req,res) =>{
     const {notaId} = req.params;
     const nota = await Nota.findById(notaId);
     res.status(200).json(nota);
 };
 
 
-async function getNotas(req,res){
+export const getNotas: Handler = async(req,res) =>{
     try{
         const notas = await Nota.find({});
         console.log(notas)
@@ -38,8 +38,7 @@ async function getNotas(req,res){
         console.log(error)
     }
 };
-
-async function updateNotaById(req, res){
+export const updateNotaById: Handler=async(req, res)=>{
     const updatedNota = await Nota.findByIdAndUpdate(
         req.params.notaId,
         req.body,
@@ -49,17 +48,16 @@ async function updateNotaById(req, res){
     );
     res.status(204).json(updatedNota);
 };
-
-async function deleteNotaById(req,res){
+export const  deleteNotaById: Handler = async(req,res)=>{
     const { notaId} = req.params;
     await Nota.findByIdAndDelete(notaId);
     res.status(204).json()
 };
 
-module.exports = {
-    createNota : createNota,
-    getNotaById : getNotaById,
-    getNotas : getNotas ,
-    updateNotaById : updateNotaById,
-    deleteNotaById : deleteNotaById
-};
+// module.exports = {
+//     createNota : createNota,
+//     getNotaById : getNotaById,
+//     getNotas : getNotas ,
+//     updateNotaById : updateNotaById,
+//     deleteNotaById : deleteNotaById
+// };

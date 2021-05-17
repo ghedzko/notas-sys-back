@@ -1,4 +1,4 @@
-const { Schema, model } =require("mongoose");
+import { Schema, model } from "mongoose";
 const bcrypt= require("bcryptjs");
 
 const userSchema = new Schema(
@@ -37,4 +37,4 @@ userSchema.statics.comparePassword = async (password, receivedPassword) => {
   return await bcrypt.compare(password, receivedPassword)
 }
 
-module.exports= model("User", userSchema);
+export default model("User", userSchema);

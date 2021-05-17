@@ -17,4 +17,4 @@ router.put('/api/roles/:roleId', roleCtrl.updateRoleById);
 // Elimino Rol por Id
 router.delete('/api/roles/:roleId',roleCtrl.deleteRoleById);
 
-module.exports = router;
+export default router;

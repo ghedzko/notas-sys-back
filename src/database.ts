@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+require('dotenv').config()
 
 mongoose
-    .connect(process.env.MONGODB_URI,{
+    .connect("mongodb://localhost/notas-sys",{
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,

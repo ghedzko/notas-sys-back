@@ -1,4 +1,4 @@
-const{Schema, model} = require('mongoose');
+import { Schema, model } from "mongoose";
 
 const contactoSchema = new Schema(
     {
@@ -8,4 +8,4 @@ const contactoSchema = new Schema(
         telefono: String
     }
 )
-module.exports =model("Contacto", contactoSchema);
+export default model("Contacto", contactoSchema);

@@ -17,4 +17,4 @@ router.put('/api/users/:userId', userCtrl.updateUserById);
 // Elimino usuario por Id
 router.delete('/api/users/:userId',userCtrl.deleteUserById);
 
-module.exports = router;
+export default router;

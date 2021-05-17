@@ -1,7 +1,8 @@
+import { Handler } from "express";
 const User = require("../models/User");
 const Role =require("../models/Role");
 
-async function createUser(req, res) {
+export const createUser: Handler = async(req, res) =>{
   try {
     const { username, email, password, roles } = req.body;
 
@@ -31,13 +32,13 @@ async function createUser(req, res) {
     console.error(error);
   }
 };
-async function getUserById(req,res){
+export const getUserById: Handler = async(req,res)=>{
   const{userId} = req.params;
   const user = await User.findById(userId);
   res.status(200).json(user);
 };
 
-async function getUsers(req,res) {
+export const getUsers: Handler = async(req,res) => {
   try{
     const users = await User.find({});
     return res.json(users)
@@ -46,7 +47,7 @@ async function getUsers(req,res) {
     console.log(error)
   }
 };
-async function updateUserById(req,res){
+export const updateUserById: Handler = async(req,res)=>{
   const updatedUser = await User.findByIdAndUpdate(
     req.params.userId,
     req.body,
@@ -56,7 +57,7 @@ async function updateUserById(req,res){
   );
   res.status(204).json(updatedUser);
 };
-async function deleteUserById(req,res){
+export const deleteUserById: Handler = async(req,res)=>{
   const { userId} = req.params;
   const deletedUser = await User.findByIdAndDelete(userId);
   res.status(204).json(deletedUser);

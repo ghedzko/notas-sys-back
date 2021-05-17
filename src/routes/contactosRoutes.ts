@@ -13,4 +13,4 @@ router.put('/api/contactos/:contactoId', contactoCtrl.updateContactoById);
 //elimino contacto por Id
 router.delete('/api/contactos/:contactoId', contactoCtrl.deleteContactoById);
 
-module.exports = router;
+export default router;
