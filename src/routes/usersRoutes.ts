@@ -21,7 +21,7 @@ const userCtrl = require("../controllers/user.controller");
  *          type: string
  *          description: the email of the user
  *        roles:
- *          type: [string]
+ *          type: array
  *          description: the roles of the user
  */
 
@@ -49,7 +49,7 @@ const userCtrl = require("../controllers/user.controller");
  *                $ref: '#/components/schemas/User'
  */
 
-router.get("/api/users", userCtrl.getUsers);
+router.get("/", userCtrl.getUsers);
 
 router.get("/api/users/:userId", userCtrl.getUserById);
 

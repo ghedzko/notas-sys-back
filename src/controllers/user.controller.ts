@@ -1,8 +1,8 @@
 import { Handler } from "express";
-const User = require("../models/User");
-const Role =require("../models/Role");
+import User from "../models/User";
+import Role from "../models/Role";
 
-export const createUser: Handler = async(req, res) =>{
+export const createUser: Handler = async (req, res) => {
   try {
     const { username, email, password, roles } = req.body;
 
@@ -17,7 +17,7 @@ export const createUser: Handler = async(req, res) =>{
     });
 
     // encrypting password
-    user.password = await User.encryptPassword(user.password);
+    //user.password = await User.encryptPassword(user.password);
 
     // saving the new user
     const savedUser = await user.save();
@@ -32,22 +32,21 @@ export const createUser: Handler = async(req, res) =>{
     console.error(error);
   }
 };
-export const getUserById: Handler = async(req,res)=>{
-  const{userId} = req.params;
+export const getUserById: Handler = async (req, res) => {
+  const { userId } = req.params;
   const user = await User.findById(userId);
   res.status(200).json(user);
 };
 
-export const getUsers: Handler = async(req,res) => {
-  try{
+export const getUsers: Handler = async (req, res) => {
+  try {
     const users = await User.find({});
-    return res.json(users)
-  }
-  catch(error){
-    console.log(error)
+    return res.json(users);
+  } catch (error) {
+    console.log(error);
   }
 };
-export const updateUserById: Handler = async(req,res)=>{
+export const updateUserById: Handler = async (req, res) => {
   const updatedUser = await User.findByIdAndUpdate(
     req.params.userId,
     req.body,
@@ -57,15 +56,15 @@ export const updateUserById: Handler = async(req,res)=>{
   );
   res.status(204).json(updatedUser);
 };
-export const deleteUserById: Handler = async(req,res)=>{
-  const { userId} = req.params;
+export const deleteUserById: Handler = async (req, res) => {
+  const { userId } = req.params;
   const deletedUser = await User.findByIdAndDelete(userId);
   res.status(204).json(deletedUser);
 };
 module.exports = {
-  createUser:createUser,
-  getUserById:getUserById,
-  getUsers:getUsers,
-  updateUserById:updateUserById,
-  deleteUserById:deleteUserById
-}
+  createUser: createUser,
+  getUserById: getUserById,
+  getUsers: getUsers,
+  updateUserById: updateUserById,
+  deleteUserById: deleteUserById,
+};
