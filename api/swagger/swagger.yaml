@@ -29,7 +29,17 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/AuthResponse"
-
+  /contactos:
+    x-swagger-router-controller: contactos.controller
+    get:
+      description: Returns Json
+      operationId: getContactos
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ContactosResponse"
   /hello:
     # binds a127 app logic to a route
     x-swagger-router-controller: hello_world
@@ -64,6 +74,14 @@ definitions:
     properties:
       token:
         type: string
+  ContactosResponse:
+    required:
+      - contactos
+    properties:
+      contactos:
+        type: array
+        items:
+          type: string
   HelloWorldResponse:
     required:
       - message
