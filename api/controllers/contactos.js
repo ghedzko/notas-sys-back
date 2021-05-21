@@ -27,12 +27,13 @@ async function getContactoById(req, res) {
 }
 
 async function getContactos(req, res) {
-  try {
-    const contactos = await Contacto.find({});
-    return res.json(contactos);
-  } catch (error) {
-    console.log(error);
-  }
+  // try {
+  //   const contactos = await Contacto.find({});
+  //   return res.json(contactos);
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  return res.json({ contactos: [] });
 }
 
 async function updateContactoById(req, res) {
@@ -55,9 +56,9 @@ async function deleteContactoById(req, res) {
   res.status(204).json();
 }
 module.exports = {
-  createContacto: createContacto,
-  getContactoById: getContactoById,
-  getContactos: getContactos,
-  updateContactoById: updateContactoById,
-  deleteContactoById: deleteContactoById,
+  // createContacto,
+  // getContactoById,
+  getContactos,
+  // updateContactoById,
+  // deleteContactoById,
 };

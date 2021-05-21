@@ -30,7 +30,7 @@ paths:
             # a pointer to a definition
             $ref: "#/definitions/AuthResponse"
   /contactos:
-    x-swagger-router-controller: contactos.controller
+    x-swagger-router-controller: contactos
     get:
       description: Returns Json
       operationId: getContactos
