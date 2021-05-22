@@ -40,6 +40,28 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/ContactosResponse"
+    post:
+      tags:
+      - "contactos"
+      summary: "Add a new contacto"
+      description: ""
+      operationId: createContacto
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Contact object that needs to be added to the collection"
+        required: true
+        schema:
+          $ref: "#/definitions/Contacto"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
   /contactos/{contactId}:
     x-swagger-router-controller: contactos
     get:
@@ -99,7 +121,6 @@ definitions:
         type: array
         items:
           type: object
-
   HelloWorldResponse:
     required:
       - message
@@ -112,3 +133,23 @@ definitions:
     properties:
       message:
         type: string
+  Contacto:
+    type: "object"
+    required:
+    - "nombre"
+    - "oficina"
+    properties:
+      _id:
+        type: "string"
+      nombre:
+        type: "string"
+        example: "Guillermo Hedzko"
+      oficina:
+        type: "string"
+        example: "Centro de Formación Nº656"
+      correo:
+        type: "string"
+        example: "ghedzko@cfp656.edu.ar"
+      telefono:
+        type: "string"
+        example: "+54(2945)697087"

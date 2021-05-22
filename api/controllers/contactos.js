@@ -1,23 +1,17 @@
 const Contacto = require("../models/Contacto");
 
-async function createContacto(req, res) {
+function createContacto(req, res) {
   const { nombre, oficina, correo, telefono } = req.body;
-
-  try {
-    const newContacto = new Contacto({
-      nombre,
-      oficina,
-      correo,
-      telefono,
-    });
-    console.log(newContacto.nombre);
-    const contactoSaved = await newContacto.save();
-
-    res.status(201).json(contactoSaved);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json(error);
-  }
+  const newContacto = new Contacto({
+    nombre,
+    oficina,
+    correo,
+    telefono,
+  });
+  newContacto
+    .save()
+    .then((contacto) => res.status(200).json(contacto))
+    .catch((error) => console.error(error));
 }
 
 function getContactoById(req, res) {
@@ -55,7 +49,7 @@ async function deleteContactoById(req, res) {
 }
 
 module.exports = {
-  // createContacto,
+  createContacto,
   getContactoById,
   getContactos,
   // updateContactoById,
