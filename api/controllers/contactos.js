@@ -26,14 +26,14 @@ async function getContactoById(req, res) {
   res.status(200).json(contacto);
 }
 
-async function getContactos(req, res) {
-  // try {
-  //   const contactos = await Contacto.find({});
-  //   return res.json(contactos);
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  return res.json({ contactos: [] });
+function getContactos(req, res) {
+  try {
+    const contactos = Contacto.find({});
+    console.log(contactos);
+    return res.json(contactos);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function updateContactoById(req, res) {
