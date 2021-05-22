@@ -21,11 +21,11 @@ async function createContacto(req, res) {
 }
 
 function getContactoById(req, res) {
-    // const { contactoId } = req.params
-    Contacto.findById(0)
-        .then((contacto) => res.json(contacto))
+    const { contactId } = req.swagger.params
+
+    Contacto.findById(contactId.value)
+        .then((contacto) => res.status(200).json(contacto))
         .catch((error) => console.error({ error }))
-    // res.status(200).json(contacto)
 }
 
 const getContactos = (req, res) => {
