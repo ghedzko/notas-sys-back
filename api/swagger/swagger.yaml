@@ -122,6 +122,99 @@ paths:
           description: Success
           schema:
             type: object
+  /notas:
+    x-swagger-router-controller: notas
+    get:
+      description: Returns Json
+      operationId: getNotas
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/NotasResponse"
+    post:
+      tags:
+      - "notas"
+      summary: "Add a new nota"
+      description: ""
+      operationId: createNota
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Nota object that needs to be added to the collection"
+        required: true
+        schema:
+          $ref: "#/definitions/Nota"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+  /notas/{notaId}:
+    x-swagger-router-controller: notas
+    get:
+      description: Returns Json
+      operationId: getNotaById
+      parameters:
+        - 
+          name: "notaId"
+          in: "path"
+          description: The note ID
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+    delete:
+      description: Returns Json
+      operationId: deleteNotaById
+      parameters:
+        - 
+          name: "notaId"
+          in: "path"
+          description: The contact ID
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+    put:
+      tags:
+      - "notas"
+      summary: "Update a note"
+      description: ""
+      operationId: updateNotaById
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        -
+          in: "path"
+          name: "notaId"
+          required: true
+          type: "string"
+        -
+          in: "body"
+          name: "Body"
+          description: "Note object that needs to be updated"
+          required: true
+          schema:
+            $ref: "#/definitions/Nota"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
   /hello:
     # binds a127 app logic to a route
     x-swagger-router-controller: hello_world
@@ -156,6 +249,14 @@ definitions:
     properties:
       token:
         type: string
+  NotasResponse:
+    required:
+      - notas
+    properties:
+      notas:
+        type: array
+        items:
+          type: string
   ContactosResponse:
     required:
       - contactos
@@ -196,3 +297,32 @@ definitions:
       telefono:
         type: "string"
         example: "+54(2945)697087"
+  Nota:
+    type: "object"
+    required:
+    - "numero"
+    - "remitente"
+    - "destinatario"
+    properties:
+      _id:
+        type: "string"
+      numero:
+        type: "number"
+        example: "1"
+      remitente:
+        type: "string"
+        example: "609dbc78607e7b235b3cdcf0"
+      destinatario:
+        type: "string"
+        example: "609dbc78607e7b235b3cdcf0"
+      descripcion:
+        type: "string"
+        example: "La presente es una nota de prueba"
+      fecha:
+        type: "string"
+        example: "20201201"      
+      etiqueta:
+        type: "array"
+        items:
+          type: "string"
+        example: "['sueldos','liquidación' ]"
