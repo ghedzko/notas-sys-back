@@ -71,9 +71,52 @@ paths:
         - 
           name: "contactId"
           in: "path"
-          description: The name of the person to whom to say hello
+          description: The contact ID
           required: true
           type: "string"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+    delete:
+      description: Returns Json
+      operationId: deleteContactoById
+      parameters:
+        - 
+          name: "contactId"
+          in: "path"
+          description: The contact ID
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+    put:
+      tags:
+      - "contactos"
+      summary: "Update a contacto"
+      description: ""
+      operationId: updateContactoById
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        -
+          in: "path"
+          name: "contactId"
+          required: true
+          type: "string"
+        -
+          in: "body"
+          name: "Body"
+          description: "Contact object that needs to be updated"
+          required: true
+          schema:
+            $ref: "#/definitions/Contacto"
       responses:
         "200":
           description: Success
@@ -120,7 +163,7 @@ definitions:
       contactos:
         type: array
         items:
-          type: object
+          type: string
   HelloWorldResponse:
     required:
       - message

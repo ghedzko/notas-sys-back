@@ -28,30 +28,26 @@ const getContactos = (req, res) => {
     .catch((error) => console.error({ error }));
 };
 
-async function updateContactoById(req, res) {
-  const updatedContacto = await Contacto.findByIdAndUpdate(
-    req.params.contactoId,
-    req.body,
-    {
-      new: true,
-    }
-  );
-  res.status(204).json(updatedContacto);
+function updateContactoById(req, res) {
+  const { contactId } = req.swagger.params;
+  Contacto.findByIdAndUpdate(contactId.value, req.body, {
+    new: true,
+  })
+    .then((contacto) => res.json(contacto))
+    .catch((error) => console.error({ error }));
 }
 
-async function deleteContactoById(req, res) {
-  const { contactoId } = req.params;
-
-  await Contacto.findByIdAndDelete(contactoId);
-
-  // code 200 is ok too
-  res.status(204).json();
+function deleteContactoById(req, res) {
+  const { contactId } = req.swagger.params;
+  Contacto.findByIdAndDelete(contactId.value)
+    .then((contacto) => res.json(contacto))
+    .catch((error) => console.error({ error }));
 }
 
 module.exports = {
   createContacto,
   getContactoById,
   getContactos,
-  // updateContactoById,
-  // deleteContactoById,
+  updateContactoById,
+  deleteContactoById,
 };
