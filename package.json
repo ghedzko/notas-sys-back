@@ -1,28 +1,35 @@
 {
-  "name": "notas-sys-back",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon src/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ghedzko/notas-sys-back.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ghedzko/notas-sys-back/issues"
-  },
-  "homepage": "https://github.com/ghedzko/notas-sys-back#readme",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^9.0.0",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.8",
-    "morgan": "^1.10.0"
-  }
+    "name": "notas-sys-back",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon src/index.js",
+        "start": "node app.js",
+        "test": "swagger project test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ghedzko/notas-sys-back.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ghedzko/notas-sys-back/issues"
+    },
+    "homepage": "https://github.com/ghedzko/notas-sys-back#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "dotenv": "^9.0.0",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.12.8",
+        "morgan": "^1.10.0",
+        "swagger-express-mw": "^0.1.0"
+    },
+    "devDependencies": {
+        "should": "^7.1.0",
+        "supertest": "^1.0.0"
+    }
 }

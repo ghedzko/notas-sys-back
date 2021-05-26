@@ -1,0 +1,328 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Sistema de Notas
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /auth:
+    x-swagger-router-controller: auth
+    get:
+      description: Returns jwt Token
+      operationId: signIn
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/AuthResponse"
+  /contactos:
+    x-swagger-router-controller: contactos
+    get:
+      description: Returns Json
+      operationId: getContactos
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ContactosResponse"
+    post:
+      tags:
+      - "contactos"
+      summary: "Add a new contacto"
+      description: ""
+      operationId: createContacto
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Contact object that needs to be added to the collection"
+        required: true
+        schema:
+          $ref: "#/definitions/Contacto"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+  /contactos/{contactId}:
+    x-swagger-router-controller: contactos
+    get:
+      description: Returns Json
+      operationId: getContactoById
+      parameters:
+        - 
+          name: "contactId"
+          in: "path"
+          description: The contact ID
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+    delete:
+      description: Returns Json
+      operationId: deleteContactoById
+      parameters:
+        - 
+          name: "contactId"
+          in: "path"
+          description: The contact ID
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+    put:
+      tags:
+      - "contactos"
+      summary: "Update a contacto"
+      description: ""
+      operationId: updateContactoById
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        -
+          in: "path"
+          name: "contactId"
+          required: true
+          type: "string"
+        -
+          in: "body"
+          name: "Body"
+          description: "Contact object that needs to be updated"
+          required: true
+          schema:
+            $ref: "#/definitions/Contacto"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+  /notas:
+    x-swagger-router-controller: notas
+    get:
+      description: Returns Json
+      operationId: getNotas
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/NotasResponse"
+    post:
+      tags:
+      - "notas"
+      summary: "Add a new nota"
+      description: ""
+      operationId: createNota
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Nota object that needs to be added to the collection"
+        required: true
+        schema:
+          $ref: "#/definitions/Nota"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+  /notas/{notaId}:
+    x-swagger-router-controller: notas
+    get:
+      description: Returns Json
+      operationId: getNotaById
+      parameters:
+        - 
+          name: "notaId"
+          in: "path"
+          description: The note ID
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+    delete:
+      description: Returns Json
+      operationId: deleteNotaById
+      parameters:
+        - 
+          name: "notaId"
+          in: "path"
+          description: The contact ID
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+    put:
+      tags:
+      - "notas"
+      summary: "Update a note"
+      description: ""
+      operationId: updateNotaById
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        -
+          in: "path"
+          name: "notaId"
+          required: true
+          type: "string"
+        -
+          in: "body"
+          name: "Body"
+          description: "Note object that needs to be updated"
+          required: true
+          schema:
+            $ref: "#/definitions/Nota"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+  /hello:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: hello_world
+    get:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: hello
+      parameters:
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  AuthResponse:
+    required:
+      - token
+    properties:
+      token:
+        type: string
+  NotasResponse:
+    required:
+      - notas
+    properties:
+      notas:
+        type: array
+        items:
+          type: string
+  ContactosResponse:
+    required:
+      - contactos
+    properties:
+      contactos:
+        type: array
+        items:
+          type: string
+  HelloWorldResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  Contacto:
+    type: "object"
+    required:
+    - "nombre"
+    - "oficina"
+    properties:
+      _id:
+        type: "string"
+      nombre:
+        type: "string"
+        example: "Guillermo Hedzko"
+      oficina:
+        type: "string"
+        example: "Centro de Formación Nº656"
+      correo:
+        type: "string"
+        example: "ghedzko@cfp656.edu.ar"
+      telefono:
+        type: "string"
+        example: "+54(2945)697087"
+  Nota:
+    type: "object"
+    required:
+    - "numero"
+    - "remitente"
+    - "destinatario"
+    properties:
+      _id:
+        type: "string"
+      numero:
+        type: "number"
+        example: "1"
+      remitente:
+        type: "string"
+        example: "609dbc78607e7b235b3cdcf0"
+      destinatario:
+        type: "string"
+        example: "609dbc78607e7b235b3cdcf0"
+      descripcion:
+        type: "string"
+        example: "La presente es una nota de prueba"
+      fecha:
+        type: "string"
+        example: "20201201"      
+      etiqueta:
+        type: "array"
+        items:
+          type: "string"
+        example: "['sueldos','liquidación' ]"
