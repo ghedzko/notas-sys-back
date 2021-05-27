@@ -1,1 +1,1 @@
-para tener las variables de entorno copiar .env-example a .env
+para tener las variables de entorno copiar .env-example a .env saraza
