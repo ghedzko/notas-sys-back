@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   version: "0.0.1"
-  title: Sistema de Notas
+  title: Sistema de Notes
 # during dev, should point to your local machine
 host: localhost:10010
 # basePath prefixes all resource paths 
@@ -29,23 +29,23 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/AuthResponse"
-  /contactos:
-    x-swagger-router-controller: contactos
+  /contacts:
+    x-swagger-router-controller: contacts
     get:
       description: Returns Json
-      operationId: getContactos
+      operationId: getContacts
       responses:
         "200":
           description: Success
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/ContactosResponse"
+            $ref: "#/definitions/ContactsResponse"
     post:
       tags:
-      - "contactos"
-      summary: "Add a new contacto"
+      - "contacts"
+      summary: "Add a new contact"
       description: ""
-      operationId: createContacto
+      operationId: createContact
       consumes:
       - "application/json"
       produces:
@@ -56,17 +56,17 @@ paths:
         description: "Contact object that needs to be added to the collection"
         required: true
         schema:
-          $ref: "#/definitions/Contacto"
+          $ref: "#/definitions/Contact"
       responses:
         "200":
           description: Success
           schema:
             type: object
-  /contactos/{contactId}:
-    x-swagger-router-controller: contactos
+  /contacts/{contactId}:
+    x-swagger-router-controller: contacts
     get:
       description: Returns Json
-      operationId: getContactoById
+      operationId: getContactById
       parameters:
         - 
           name: "contactId"
@@ -81,7 +81,7 @@ paths:
             type: object
     delete:
       description: Returns Json
-      operationId: deleteContactoById
+      operationId: deleteContactById
       parameters:
         - 
           name: "contactId"
@@ -96,10 +96,10 @@ paths:
             type: object
     put:
       tags:
-      - "contactos"
-      summary: "Update a contacto"
+      - "contacts"
+      summary: "Update a contact"
       description: ""
-      operationId: updateContactoById
+      operationId: updateContactById
       consumes:
       - "application/json"
       produces:
@@ -116,29 +116,29 @@ paths:
           description: "Contact object that needs to be updated"
           required: true
           schema:
-            $ref: "#/definitions/Contacto"
+            $ref: "#/definitions/Contact"
       responses:
         "200":
           description: Success
           schema:
             type: object
-  /notas:
-    x-swagger-router-controller: notas
+  /notes:
+    x-swagger-router-controller: notes
     get:
       description: Returns Json
-      operationId: getNotas
+      operationId: getNotes
       responses:
         "200":
           description: Success
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/NotasResponse"
+            $ref: "#/definitions/NotesResponse"
     post:
       tags:
-      - "notas"
-      summary: "Add a new nota"
+      - "notes"
+      summary: "Add a new note"
       description: ""
-      operationId: createNota
+      operationId: createNote
       consumes:
       - "application/json"
       produces:
@@ -146,23 +146,23 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Nota object that needs to be added to the collection"
+        description: "Note object that needs to be added to the collection"
         required: true
         schema:
-          $ref: "#/definitions/Nota"
+          $ref: "#/definitions/Note"
       responses:
         "200":
           description: Success
           schema:
             type: object
-  /notas/{notaId}:
-    x-swagger-router-controller: notas
+  /notes/{noteId}:
+    x-swagger-router-controller: notes
     get:
       description: Returns Json
-      operationId: getNotaById
+      operationId: getNoteById
       parameters:
         - 
-          name: "notaId"
+          name: "noteId"
           in: "path"
           description: The note ID
           required: true
@@ -174,10 +174,10 @@ paths:
             type: object
     delete:
       description: Returns Json
-      operationId: deleteNotaById
+      operationId: deleteNoteById
       parameters:
         - 
-          name: "notaId"
+          name: "noteId"
           in: "path"
           description: The contact ID
           required: true
@@ -189,10 +189,10 @@ paths:
             type: object
     put:
       tags:
-      - "notas"
+      - "notes"
       summary: "Update a note"
       description: ""
-      operationId: updateNotaById
+      operationId: updateNoteById
       consumes:
       - "application/json"
       produces:
@@ -200,7 +200,7 @@ paths:
       parameters:
         -
           in: "path"
-          name: "notaId"
+          name: "noteId"
           required: true
           type: "string"
         -
@@ -209,7 +209,7 @@ paths:
           description: "Note object that needs to be updated"
           required: true
           schema:
-            $ref: "#/definitions/Nota"
+            $ref: "#/definitions/Note"
       responses:
         "200":
           description: Success
@@ -249,19 +249,19 @@ definitions:
     properties:
       token:
         type: string
-  NotasResponse:
+  NotesResponse:
     required:
-      - notas
+      - notes
     properties:
-      notas:
+      notes:
         type: array
         items:
           type: string
-  ContactosResponse:
+  ContactsResponse:
     required:
-      - contactos
+      - contacts
     properties:
-      contactos:
+      contacts:
         type: array
         items:
           type: string
@@ -277,51 +277,51 @@ definitions:
     properties:
       message:
         type: string
-  Contacto:
+  Contact:
     type: "object"
     required:
-    - "nombre"
-    - "oficina"
+    - "name"
+    - "office"
     properties:
       _id:
         type: "string"
-      nombre:
+      name:
         type: "string"
         example: "Guillermo Hedzko"
-      oficina:
+      office:
         type: "string"
         example: "Centro de Formación Nº656"
-      correo:
+      email:
         type: "string"
         example: "ghedzko@cfp656.edu.ar"
-      telefono:
+      phone:
         type: "string"
         example: "+54(2945)697087"
-  Nota:
+  Note:
     type: "object"
     required:
-    - "numero"
-    - "remitente"
-    - "destinatario"
+    - "noteNumber"
+    - "sender"
+    - "addressee"
     properties:
       _id:
         type: "string"
-      numero:
+      noteNumber:
         type: "number"
         example: "1"
-      remitente:
+      sender:
         type: "string"
         example: "609dbc78607e7b235b3cdcf0"
-      destinatario:
+      addressee:
         type: "string"
         example: "609dbc78607e7b235b3cdcf0"
-      descripcion:
+      description:
         type: "string"
-        example: "La presente es una nota de prueba"
-      fecha:
+        example: "La presente es una note de prueba"
+      sendDate:
         type: "string"
         example: "20201201"      
-      etiqueta:
+      tag:
         type: "array"
         items:
           type: "string"
