@@ -1,0 +1,45 @@
+GET http://127.0.0.1:5000/contacts
+content-type: application/json
+
+###
+
+POST http://127.0.0.1:5000/contacts
+content-type: application/json
+
+    {
+        "name": "Guillermo Hedzko",
+        "office": "CFP 656",
+        "email": "ghedzko@cfp656.edu.ar",
+        "phone": "12345678"
+    }
+
+###
+PUT http://127.0.0.1:5000/contacts/60c2afa72acada36d95fb108
+content-type: application/json
+
+    {
+        "name": "Guillermito Hedzko",
+        "office": "CFP 656",
+        "email": "ghedzko@cfp656.edu.ar",
+        "phone": "12345678"
+    }
+
+###
+DELETE  http://127.0.0.1:5000/contacts/60c2af892acada36d95fb107
+content-type: application/json
+
+###
+GET http://127.0.0.1:5000/contacts/60c2afa72acada36d95fb108
+content-type: application/json
+
+###
+
+POST http://127.0.0.1:5000/contacts
+content-type: application/json
+
+    {
+        "name": "Luciano Hedzko",
+        "office": "CFP 656",
+        "email": "lhedzko@cfp656.edu.ar",
+        "phone": "12345678"
+    }

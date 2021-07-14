@@ -5,7 +5,7 @@ var app = require("express")();
 module.exports = app; // for testing
 require("dotenv").config();
 //conecto a MongoDB
-require("./src/database");
+require("./database");
 
 var config = {
   appRoot: __dirname, // required config
